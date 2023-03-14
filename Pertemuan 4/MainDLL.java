@@ -9,6 +9,7 @@ public class MainDLL {
         x.removeLast();
         x.printToLast();
         x.removeFirst();
+        x.removeLast();
         x.printToLast();
         boolean b = x.isExist(5);
         if(b) System.out.println("angka ditemukan");
@@ -67,15 +68,22 @@ class DLL {
     }
 
     public void removeFirst() {
-        head = head.next;
         head.prev = null;
+        head = head.next;
         size--;
     }
 
     public void removeLast() {
-        tail = tail.prev;
-        tail.next = null;
-        size--;
+        if (size == 1) {
+            head.prev = null;
+            head = head.next;
+            size--;
+        }
+        else {
+            tail = tail.prev;
+            tail.next = null;
+            size--;
+        }
     }
 
     public boolean isExist(int data) {
